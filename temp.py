@@ -1,7 +1,7 @@
 import cv2
 import os
 
-path = "C:\\Users\\Siddharth\\license_plate_detection\\test_images\\"
+path = "./test_images/"
 for subdir, dirs, files in os.walk(path):
     for file in files:
         re_path = os.path.join(subdir, file)
@@ -32,6 +32,7 @@ for subdir, dirs, files in os.walk(path):
                     break
         
         cv2.drawContours(image, [NumberPlateCnt], -1, (0,255,0), 3)     # Drawing the selected contour on the original image
+        cv2.imwrite("./output/output-{}.png".format(file[:len(file)-4]), image)
         cv2.imshow("Image", dilation_image)
         cv2.imshow("Imagex", image)     #display the param image in window
         cv2.waitKey(5000)
